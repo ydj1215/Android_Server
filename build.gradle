@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'war'
+
+    // Spring Boot 플러그인 추가
+    id 'org.springframework.boot' version '2.6.7'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Servlet API
+    providedRuntime 'javax.servlet:javax.servlet-api:4.0.1' // providedCompile 대신 providedRuntime 사용
+
+    // JDBC Driver for Oracle
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc8:19.3.0.0'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    // SLF4J API
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+
+    // Logging implementation 예: Logback
+    implementation 'ch.qos.logback:logback-classic:1.2.10'
+
+    // JdbcTemplate와 Spring Web 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
+    // H2 Database
+    runtimeOnly 'com.h2database:h2'
+
+    // Spring Boot Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+// Spring Boot에서 WAR 파일 생성을 위해 필요한 설정
+bootWar {
+    from 'web' // web 폴더 내의 자원을 WAR에 포함시키기 위해
+}
