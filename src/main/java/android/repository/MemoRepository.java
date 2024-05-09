@@ -19,7 +19,7 @@ public class MemoRepository {
     }
 
     public List<MemoDTO> findAll() {
-        String sql = "SELECT content FROM memos";
+        String sql = "SELECT content FROM memos ORDER BY ID DESC";
         return jdbcTemplate.query(sql, (rs, rowNum) -> new MemoDTO(rs.getString("content")));
     }
 }

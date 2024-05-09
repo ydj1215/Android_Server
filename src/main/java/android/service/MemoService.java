@@ -23,8 +23,11 @@ public class MemoService {
 
     public List<MemoDTO> getMemos() throws JsonProcessingException {
         List<MemoDTO> temp = memoRepository.findAll();
+
+        // 서버 -> 클라이언트로 전송되는 데이터 로깅
         String json = objectMapper.writeValueAsString(temp);
         log.warn("zzzz" + json);
+
         return temp;
     }
 }
